@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+float solve_for_X(float a, float b, float c, float d, float e, float f)
+{
+    float X;
+    if(b == e)
+     {
+         X = (-c + f) / (-a + d);
+     }
+         else
+         {
+         X = (-c*e + f*b) / (-a*e + d*b);
+     }
+     return X;
+     
+     
+     
+     /*{
+         X = (-c*e + f*b) / (-a*e + d*b);
+     }
+     return X;
+     */
+}
+float solve_for_Y(float a, float b, float c, float d, float e, float f, float X)
+{
+    float Y;
+    Y = (c - a*X)/b;
+}
+
+int main()
+{
+  float a, b, c, X, Y, d, e, f;
+  printf("\nEnter a linear equation in one variable of the form aX + bY = c ");
+  printf("\nEnter the value of a, b, c respectively: ");
+  scanf("%f%f%f", &a, &b, &c);
+  printf("\nEnter a linear equation in one variable of the form dX + eY = f ");
+  scanf("%f%f%f", &d, &e, &f);
+  X = solve_for_X(a, b, c, d, e, f);
+  printf("\nSolution is X = %f", X);
+  Y = solve_for_Y(a, b, c, d, e, f, X);
+  printf("\nSolution is Y = %f", Y);
+  return 0;
+}
