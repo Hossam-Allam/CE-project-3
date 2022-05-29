@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+
+float solve_for_X(float a, float b, float c, float d, float e, float f) //a function to solve the system of equations for X
+{
+    float X;
+    if(b == e)
+     {
+         X = (-c + f) / (-a + d); //formula if the coefficients for Y are equal
+     }
+         else
+         {
+         X = (-c*e + f*b) / (-a*e + d*b); //formula if coefficients for Y are unequal
+     }
+     return X;
+     
+     
+     
+     
+}
+float solve_for_Y(float a, float b, float c, float d, float e, float f, float X) //function to solve for Y after the value of X has been found out
+{
+    float Y;
+    Y = (c - a*X)/b;
+}
+
+
+int main()
+{
+    FILE* ptr;
+    char str[50];
+    ptr = fopen("test.txt", "a+"); //to open the file
+ 
+    if (NULL == ptr) {
+        printf("file can't be opened \n");
+    }
+    printf("This is a program that solves systems of linear equations");
+    printf("There are presaved equations that you can ask the program to solve by typing the coefficients to the variables\n");
+    printf("Alternatively you can type in a set of coefficients you want \n");
+    printf("presaved sets of linear equations can be found below \n");
+ 
+    while (fgets(str, 50, ptr) != NULL) { // to get the contents of the file
+        printf("%s", str); // to print the contents of the file
+        
+    }
+ 
+    fclose(ptr);
+    
+    float a, b, c, X, Y, d, e, f;
+  printf("\nEnter a linear equation in the form of aX + bY = c ");
+  printf("\nEnter the value of a, b, c respectively: ");
+  scanf("%f%f%f", &a, &b, &c);
+  printf("\nEnter a linear equation in rhe form of dX + eY = f ");
+  scanf("%f%f%f", &d, &e, &f);
+  printf("\vThe simultaneous equations are given as:\v\n");
+  printf("%.2fx + %.2fy = %.2f\n",a,b,c );
+  printf("%.2fx + %.2fy = %.2f\v\n",d,e,f );
+  printf("This is solved using the substitution method");
+  X = solve_for_X(a, b, c, d, e, f); //to call on the function to solve x
+  printf("\nSolution is X = %f", X);
+  Y = solve_for_Y(a, b, c, d, e, f, X); // to call on the function to solve y
+  printf("\nSolution is Y = %f", Y);
+    return 0;
+}
